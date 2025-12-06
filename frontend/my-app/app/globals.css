@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+:root {
+  /* Warna Tema */
+  --theme-primary: #364f6b;
+  --theme-secondary: #3fc1c9;
+  --theme-tertiary: #fc5185;
+
+  /* Warna Latar */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f8f8;
+  --bg-tertiary: #fafafa;
+
+  /* Warna Aksen */
+  --accent-primary: #181616;
+  --accent-secondary: #333333;
+  --accent-tertiary: #727272;
+
+  /* Warna Teks */
+  --text-primary: #181616;
+  --text-secondary: #333333;
+  --text-tertiary: #898989;
+
+  /* Background default */
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Montserrat", sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Custom styles untuk Mino Store sesuai Preset */
+.hero-bg {
+  background: linear-gradient(135deg, var(--theme-primary) 0%, #2a3d55 100%);
+}
+
+/* Typography sesuai preset */
+h1,
+.h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--text-primary);
+}
+
+h2,
+.h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--text-primary);
+}
+
+h3,
+.h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+h4,
+.h4 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+h5,
+.h5 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+h6,
+.h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-primary);
+  opacity: 0.95;
+}
+
+/* Utility classes untuk warna preset */
+.text-theme-primary {
+  color: var(--theme-primary);
+}
+
+.text-theme-secondary {
+  color: var(--theme-secondary);
+}
+
+.text-theme-tertiary {
+  color: var(--theme-tertiary);
+}
+
+.bg-theme-primary {
+  background-color: var(--theme-primary);
+}
+
+.bg-theme-secondary {
+  background-color: var(--theme-secondary);
+}
+
+.bg-theme-tertiary {
+  background-color: var(--theme-tertiary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+/* Custom carousel controls */
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+
+.hero-carousel .carousel-control-prev {
+  left: 20px;
+}
+
+.hero-carousel .carousel-control-next {
+  right: 20px;
+}
+
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar toggle button */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
