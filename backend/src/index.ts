@@ -12,6 +12,7 @@ import MsCategory from "./models/MsCategory";
 import "./models/associations"; // Import associations untuk mendefinisikan relasi
 import transactionRoutes from "./routes/transactionRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
+import numbersRoutes from "./routes/numbersRoutes";
 
 const app: Application = express();
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/numbers", numbersRoutes);
 
 // Health check endpoint
 app.get("/", (req, res) => {
@@ -39,13 +41,22 @@ const startServer = async () => {
     // Connect ke database
     await connectDB();
 
-    // Sync models dengan database (untuk development)
-    // Hapus { force: true } di production untuk menghindari drop table
-    if (process.env.NODE_ENV === "development") {
-      await MsCategory.sync({ alter: true });
-      await TransactionHeader.sync({ alter: true });
-      await TransactionDetail.sync({ alter: true });
-      console.log("✅ Database models synchronized");
+    // Run migrations (jika ada)
+    if (process.env.RUN_MIGRATIONS === "true") {
+      const { runMigrations, runSeeders } = await import("./utils/migrate");
+      await runMigrations();
+      if (process.env.RUN_SEEDERS === "true") {
+        await runSeeders();
+      }
+    } else {
+      // Sync models dengan database (untuk development - fallback)
+      // Hapus { force: true } di production untuk menghindari drop table
+      if (process.env.NODE_ENV === "development") {
+        await MsCategory.sync({ alter: true });
+        await TransactionHeader.sync({ alter: true });
+        await TransactionDetail.sync({ alter: true });
+        console.log("✅ Database models synchronized");
+      }
     }
 
     // Start server

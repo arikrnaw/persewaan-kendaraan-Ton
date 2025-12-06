@@ -322,10 +322,22 @@ export default function EditTransactionPage() {
       router.push("/transactions");
     } catch (error: any) {
       console.error("Error updating transaction:", error);
-      alert(
+
+      // Repopulate form dengan data yang sudah diisi jika ada error validasi
+      const errorMessage =
         error.response?.data?.message ||
-          "Terjadi kesalahan saat mengupdate transaksi"
-      );
+        "Terjadi kesalahan saat mengupdate transaksi";
+      const errors = error.response?.data?.errors || [];
+
+      // Tampilkan error dengan detail
+      if (errors.length > 0) {
+        alert(`Validasi gagal:\n${errors.join("\n")}`);
+      } else {
+        alert(errorMessage);
+      }
+
+      // Form sudah ter-populate karena state tidak di-reset
+      // Data tetap ada di state (description, code, rateEuro, datePaid, categoryBoxes)
     } finally {
       setLoading(false);
     }

@@ -77,3 +77,9 @@ export const categoryApi = {
   getById: (id: number) => api.get(`/categories/${id}`),
   create: (data: { name: string }) => api.post("/categories", data),
 };
+
+export const numbersApi = {
+  getFibonacci: (n: number) => api.get(`/numbers/fibonacci/${n}`),
+  getFibonacciSum: (data: { n1: number; n2: number }) =>
+    api.post("/numbers/fibonacci-sum", data),
+};
