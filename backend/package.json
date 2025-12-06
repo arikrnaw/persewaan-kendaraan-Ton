@@ -7,8 +7,9 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "migrate": "ts-node src/utils/migrate.ts",
-    "seed": "RUN_MIGRATIONS=true RUN_SEEDERS=true ts-node -e \"import('./src/utils/migrate').then(m => m.runMigrations().then(() => m.runSeeders()))\"",
+    "create-db": "ts-node src/utils/create-database.ts",
+    "migrate": "ts-node src/utils/run-migrations.ts",
+    "seed": "ts-node src/utils/run-migrations.ts --seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

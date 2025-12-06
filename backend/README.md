@@ -2,20 +2,6 @@
 
 Backend API untuk sistem transaksi persewaan kendaraan menggunakan Express.js, TypeScript, dan MySQL.
 
-## Fitur
-
-- ✅ CRUD Master Transaction
-- ✅ **One-to-Many Relationship** - Satu transaksi memiliki banyak income dan banyak expense
-- ✅ Multiple Transaction Details dalam satu input
-- ✅ Kategori Income dan Expense (hardcoded)
-- ✅ **Validasi Server-Side Lengkap** - Validasi semua field dengan error messages yang jelas
-- ✅ Database transaction untuk data integrity
-- ✅ **Search** - Pencarian berdasarkan description dan code
-- ✅ **Filter Range Tanggal** - Filter berdasarkan tanggal pembayaran
-- ✅ **Filter Kategori** - Filter berdasarkan kategori transaksi (income/expense)
-- ✅ **Sorting** - Sorting per kolom (ascending/descending)
-- ✅ **Reset Filter Info** - Informasi filter aktif untuk reset
-
 ## Teknologi
 
 - **Express.js** - Web framework
@@ -34,13 +20,44 @@ npm install
 
 ### 2. Setup Database
 
-Buat database MySQL dan jalankan schema:
+### Menjalankan Migrasi
 
-```bash
-mysql -u root -p < database/schema.sql
-```
+1. **Setup Environment**
+   Pastikan file `.env` sudah dikonfigurasi dengan benar:
 
-Atau buat database manual dan import file `database/schema.sql`.
+   ```env
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_NAME=vehicle_rental
+   DB_USER=root
+   DB_PASSWORD=your_password
+   RUN_MIGRATIONS=true
+   RUN_SEEDERS=true
+   ```
+
+2. **Jalankan Migrasi Manual**
+
+   ```bash
+   npm run migrate
+   ```
+
+   # Atau buat database terlebih dahulu (opsional)
+
+   ```bash
+   npm run create-db
+   ```
+
+   Atau dengan seeder:
+
+   ```bash
+   npm run seed
+   ```
+
+3. **Jalankan via Server Start**
+   Set environment variable `RUN_MIGRATIONS=true` dan `RUN_SEEDERS=true` sebelum menjalankan server:
+   ```bash
+   RUN_MIGRATIONS=true RUN_SEEDERS=true npm run dev
+   ```
 
 ### 3. Konfigurasi Environment
 
